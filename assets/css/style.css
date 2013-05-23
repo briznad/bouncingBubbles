@@ -1,0 +1,340 @@
+/* ==========================================================================
+   my custom styles
+   ========================================================================== */
+/* import animation keyframes */
+/* animation keyframes */
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slide-in-top {
+  from {
+    top: 240px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-moz-keyframes slide-in-top {
+  from {
+    top: 240px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-ms-keyframes slide-in-top {
+  from {
+    top: 240px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@-o-keyframes slide-in-top {
+  from {
+    top: 240px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+@keyframes slide-in-top {
+  from {
+    top: 240px;
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+}
+
+/* /animation keyframes */
+/* /import animation keyframes */
+/* helper styles */
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.relative-container {
+  position: relative;
+}
+
+/* /helper styles */
+/* general page styles */
+html {
+  background-color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  color: whitesmoke;
+  overflow: hidden;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #ebebeb;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.faucet,
+.faucet-knob,
+.faucet-spout {
+  position: absolute;
+  right: 0;
+}
+
+.faucet {
+  top: 20px;
+}
+
+.faucet-object {
+  position: absolute;
+  z-index: -1;
+}
+
+.bubbles-ready .faucet-knob,
+.bubbles-ready .faucet-knob-object {
+  cursor: pointer;
+}
+.bubbles-ready .faucet-knob:hover {
+  top: 8px;
+}
+
+.faucet-knob {
+  width: 190px;
+  height: 80px;
+  right: 62px;
+  top: 10px;
+  background-position: -48px 0;
+  -webkit-transition-property: -webkit-transform, top;
+  -moz-transition-property: -moz-transform, top;
+  -ms-transition-property: -ms-transform, top;
+  -o-transition-property: -o-transform, top;
+  transition-property: transform, top;
+  -webkit-transition-duration: 400ms;
+  -moz-transition-duration: 400ms;
+  -ms-transition-duration: 400ms;
+  -o-transition-duration: 400ms;
+  transition-duration: 400ms;
+}
+.faucet-knob.faucet-open {
+  top: 0;
+  -webkit-transform: rotateY(355deg);
+  -moz-transform: rotateY(355deg);
+  -ms-transform: rotateY(355deg);
+  -o-transform: rotateY(355deg);
+  transform: rotateY(355deg);
+}
+.faucet-knob.faucet-open:hover {
+  top: 2px;
+}
+.faucet-knob.faucet-transition {
+  -webkit-transition-duration: 1250ms;
+  -moz-transition-duration: 1250ms;
+  -ms-transition-duration: 1250ms;
+  -o-transition-duration: 1250ms;
+  transition-duration: 1250ms;
+}
+.faucet-knob .faucet-object:nth-child(1) {
+  width: 90%;
+  height: 20px;
+  left: 4%;
+  top: 10px;
+}
+.faucet-knob .faucet-object:nth-child(2) {
+  width: 16%;
+  height: 94%;
+  left: 42%;
+  bottom: 0;
+}
+
+.faucet-spout {
+  width: 300px;
+  height: 220px;
+  top: 80px;
+  background-position: 0 100%;
+}
+.faucet-spout .faucet-object:nth-child(1) {
+  width: 66%;
+  height: 36%;
+  right: 0;
+  top: 40%;
+}
+.faucet-spout .faucet-object:nth-child(2) {
+  width: 26%;
+  height: 18%;
+  left: 36%;
+  bottom: 60%;
+}
+.faucet-spout .faucet-object:nth-child(3) {
+  width: 32%;
+  height: 10%;
+  left: 32%;
+  top: 8%;
+}
+.faucet-spout .faucet-object:nth-child(4) {
+  width: 8%;
+  height: 6%;
+  right: 66%;
+  bottom: 48%;
+}
+.faucet-spout .faucet-object:nth-child(5) {
+  width: 31%;
+  height: 8%;
+  right: 66%;
+  bottom: 26%;
+}
+.faucet-spout .faucet-object:nth-child(6) {
+  width: 28%;
+  height: 8%;
+  right: 66%;
+  bottom: 34%;
+}
+.faucet-spout .faucet-object:nth-child(7) {
+  width: 22%;
+  height: 6%;
+  right: 66%;
+  bottom: 42%;
+}
+.faucet-spout .faucet-object:nth-child(8) {
+  width: 1px;
+  height: 24%;
+  left: 1%;
+  bottom: 2%;
+}
+.faucet-spout .faucet-object:nth-child(9) {
+  width: 1px;
+  height: 24%;
+  left: 18%;
+  bottom: 2%;
+}
+
+.delayed .faucet-knob,
+.delayed .faucet-spout {
+  background-image: url(../images/faucet.png);
+  background-repeat: no-repeat;
+}
+
+.circle {
+  position: absolute;
+  display: inline-block;
+  top: 310px;
+  z-index: -1;
+  background-image: url(../images/circle_500.png);
+  background-position: center;
+  border-radius: 50%;
+  cursor: pointer;
+  cursor: hand;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+  text-indent: -5000px;
+  -webkit-transition: background-color 200ms ease-in-out;
+  -moz-transition: background-color 200ms ease-in-out;
+  -ms-transition: background-color 200ms ease-in-out;
+  -o-transition: background-color 200ms ease-in-out;
+  transition: background-color 200ms ease-in-out;
+  -webkit-animation: slide-in-top 500ms ease-in-out;
+  -moz-animation: slide-in-top 500ms ease-in-out;
+  -ms-animation: slide-in-top 500ms ease-in-out;
+  -o-animation: slide-in-top 500ms ease-in-out;
+  animation: slide-in-top 500ms ease-in-out;
+}
+.circle.bodysnatcher {
+  -webkit-animation: none;
+  -moz-animation: none;
+  -ms-animation: none;
+  -o-animation: none;
+  animation: none;
+}
+
+/* dev */
+/* /dev */
+/* /general page styles */
+/* responsive media queries */
+@media (min-width: 1025px) {
+  /* if larger than typical tablet display, aka desktop styles */
+}
+@media (max-width: 480px) {
+  /* if smaller or equal to typical phone display, aka phone styles */
+}
