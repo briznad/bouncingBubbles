@@ -1,0 +1,11 @@
+/* bouncingBubbles keyframes */
+
+@include keyframe(slide-in-top) {
+	from 	{
+		top: 240px;
+		opacity: 0;
+		@include prefix(transform, scale(0));
+	}
+}
+
+/* /animation keyframes */

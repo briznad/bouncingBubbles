@@ -1,5 +1,14 @@
 ;(function( $, window, document, undefined ) {
 
+	// enable ECMAScript 5 Strict Mode
+	'use strict';
+
+	/* console.log shortcut for internal dev */
+	function _(msg) {
+		if (typeof console !== 'undefined') console.log(msg);
+	}
+	/* /console.log shortcut for internal dev */
+
 	var online = true,
 		base = {
 
@@ -7,12 +16,14 @@
 			$.ajax({
 				dataType: 'script',
 				url: '//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js',
-				success: base.queryLatLong, // yeah, we're online
+				success: base.queryLatLong, // yay, we're online
 				error: base.setOffline // boo, we're offline
 			});
 		},
 
 		setOffline: function() {
+			_('boo, we\'re offline');
+
 			online = !online;
 
 			base.getLatLong();
@@ -24,22 +35,26 @@
 			else base.getLatLong();
 
 			// for a situation where geoip is defined but our request was rejected (status 401) go on as if nothing happened
-			var t = setTimeout(base.getLatLong, 7000);
+			setTimeout(base.getLatLong, 7000);
 		},
 
 		getLatLong: function(data) {
-			// if we're missing our expected data object, throw in a dummy obj
-			if (typeof(data) === 'undefined') {
-				var data = {};
-				if (typeof(data.location) === 'undefined') data.location = {};
-				if (typeof(data.city) === 'undefined' || typeof(data.city.names) === 'undefined') data.city = { names: {} };
-			}
-
 			// do this only once
-			if (typeof(base.lat) === 'undefined') {
+			if (typeof base.latitude === 'undefined') {
+
+				// if we're missing our expected data object, throw in a dummy obj
+				if (typeof data === 'undefined' || typeof data.error !== 'undefined') {
+					var data = {
+						location: {},
+						city: {
+							names: {}
+						}
+					};
+				}
+
 				// if I can't get lat/long use the coords from my apt. yes, that's where I live, right down there.
-				base.lat = data.location.latitude || 40.7235,
-				base.long = data.location.longitude || -73.8612;
+				base.latitude = data.location.latitude || 40.7235;
+				base.longitude = data.location.longitude || -73.8612;
 				base.city = data.city.names.en || 'Williamsburg';
 
 				if (online) base.queryWeather();
@@ -49,7 +64,7 @@
 		queryWeather: function() {
 			$.ajax({
 				dataType: 'jsonp',
-				url: 'https://api.forecast.io/forecast/84a181affa36ad15a04a60a792b3122a/' + base.lat + ',' + base.long,
+				url: 'https://api.forecast.io/forecast/84a181affa36ad15a04a60a792b3122a/' + base.latitude + ',' + base.longitude,
 				data: {
 					exclude: 'minutely,hourly,daily,alerts,flags'
 				},
@@ -63,10 +78,10 @@
 			if (typeof(data) === 'undefined' || typeof(data.currently) === 'undefined') var data = { currently: {} };
 
 			// if I can't get weather info, use the values from the day I made this
-			base.temperature = data.currently.temperature || 64.43,
-			base.cloudCover = data.currently.cloudCover || 0.17,
-			base.humidity = data.currently.humidity || 0.42,
-			base.windSpeed = data.currently.windSpeed || 6.31,
+			base.temperature = data.currently.temperature || 64.43;
+			base.cloudCover = data.currently.cloudCover || 0.17;
+			base.humidity = data.currently.humidity || 0.42;
+			base.windSpeed = data.currently.windSpeed || 6.31;
 			base.windBearing = data.currently.windBearing || 166;
 			base.currentInfo = !(typeof(data.offset) === 'undefined');
 
@@ -82,14 +97,11 @@
 			var wind = ((base.windSpeed / 30) * 15) * ((base.windBearing < 180) ? -1 : 1),
 				growSpeed = 500,
 				subsequentInterval = 7500,
-				// subsequentInterval = 500000,
 				circleTimeout,
 				circlesArea = 0,
 				circlesCounter = 0,
 				maxCircleSize = 250,
 				minCircleSize = 50;
-
-			var nozzleLeftWall = (window.innerWidth - maxCircleSize) /  2;
 
 			function insertCircle(circleCount) {
 
@@ -221,19 +233,11 @@
 		},
 
 		logWeatherInfo: function() {
-			if (typeof(console) !== 'undefined' && typeof(console.log) === 'function') {
-				var singularIndicative = (base.currentInfo) ? 'is' : 'was';
-				console.log(((base.currentInfo) ? 'The current' : 'On May 2nd, 2013') + ' weather forecast for ' + base.city + ':\n   wind speed ' + singularIndicative + ' ' + base.windSpeed + 'mph, bearing ' + base.windBearing + '°\n   temparature ' + singularIndicative + ' ' + base.temperature + '°F\n   cloud cover ' + singularIndicative + ' ' + (base.cloudCover * 100) + '%');
-			}
+			var singularIndicative = (base.currentInfo) ? 'is' : 'was';
+			_(((base.currentInfo) ? 'The current' : 'On May 2nd, 2013') + ' weather forecast for ' + base.city + ':\n   wind speed ' + singularIndicative + ' ' + base.windSpeed + 'mph, bearing ' + base.windBearing + '°\n   temparature ' + singularIndicative + ' ' + base.temperature + '°F\n   cloud cover ' + singularIndicative + ' ' + (base.cloudCover * 100) + '%');
 		}
 	};
 
-	$(window).on('load.bouncingBubbles', function() {
-		// add class to html element to key off lazy-loading css
-		$('html').addClass('delayed');
-
-		// using either native loaction or remote IP detection, get user's lat/long
-		base.checkOnlineStatus();
-	});
+	base.checkOnlineStatus();
 
 })( jQuery, window, document );

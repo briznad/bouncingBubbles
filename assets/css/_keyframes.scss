@@ -1,40 +1,8 @@
-// mixins
-
-@mixin keyframe($name) {
-	@-webkit-keyframes #{$name} {
-		@content;
-	}
-
-	@-moz-keyframes #{$name} {
-		@content;
-	}
-
-	@-ms-keyframes #{$name} {
-		@content;
-	}
-
-	@-o-keyframes #{$name} {
-		@content;
-	}
-
-	@keyframes #{$name} {
-		@content;
-	}
-}
-
 /* animation keyframes */
 
 @include keyframe(fade-in) {
 	0%	{ opacity: 0; }
-	25%	{ opacity: 0; }
-}
-
-@include keyframe(slide-in-top) {
-	from 	{
-		top: 240px;
-		opacity: 0;
-		@include prefix(transform, scale(0));
-	}
+	10%	{ opacity: 0; }
 }
 
 /* /animation keyframes */

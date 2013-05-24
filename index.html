@@ -7,14 +7,26 @@
         <meta name="description" content="interactive bouncing bubbles">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+		<!-- for DEV -->
+
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-
+	    <!-- for PROD -->
+	    <!--
+	    <link rel="stylesheet" type="text/css" href="assets/css/style.min.css">
+ -->
 
 	</head>
     <body>
 
-    	<div class="faucet">
+		<hgroup>
+			<!-- <div class="box2d-object title-object" data-box2d-static="true"></div> -->
+			<div class="box2d-object attribution-object" data-box2d-static="true"></div>
+			<h1 class="title">bouncingBubbles</h1>
+			<h2 class="attribution">by <a href="http://twitter.com/briznad">@briznad</a></h2>
+		</hgroup>
+
+    	<div class="faucet" id="faucet">
     		<div class="faucet-knob">
     			<div class="box2d-object faucet-object faucet-knob-object" data-box2d-static="true"></div>
     			<div class="box2d-object faucet-object faucet-knob-object" data-box2d-static="true"></div>
@@ -39,16 +51,24 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="assets/js/plugins/jquery.min.js"><\/script>')</script>
 
-        <!--
-		location data provided by GeoIP2 JavaScript from MaxMind - http://www.maxmind.com/en/javascript
-	    -->
-        <script src="//j.maxmind.com/js/apis/geoip2/v2.0/geoip2.js"></script>
-        <script>window.geoip2 || document.write('<script src="assets/js/plugins/geoip2.min.js"><\/script>')</script>
-
+		<!-- for DEV -->
+		<!-- location data provided by GeoIP2 JavaScript from MaxMind - http://www.maxmind.com/en/javascript -->
         <!-- custom modified version of franzenzenhofer's box2d-jquery plugin | see https://github.com/briznad/box2d-jquery/ -->
-        <script src="assets/js/plugins/jquery.box2d.min.js"></script>
+        <!-- proprietary bouncingBubbles plugin -->
+		<!--
+		<script src="assets/js/plugins/geoip2.min.js"></script>
 
-        <script src="assets/js/do.js"></script>
+        <script src="assets/js/plugins/jquery.box2d.js"></script>
+
+        <script src="assets/js/plugins/bouncingbubbles.do.js"></script>
+
+		<script src="assets/js/local/do.js"></script>
+		-->
+
+        <!-- for PROD -->
+
+        <script src="assets/js/local/do.min.js"></script>
+
 
         <script>
             var _gaq=[['_setAccount','UA-36834242-1'],['_setDomainName', 'beautifuluniquesnowflake.com'],['_trackPageview']];

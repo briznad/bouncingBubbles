@@ -1,0 +1,209 @@
+/* ==========================================================================
+   bouncingBubbles custom styles
+   ========================================================================== */
+
+/* imports */
+
+// animation keyframes
+@import "bouncingBubbleKeyframes";
+
+/* /imports */
+
+/* general page styles */
+
+.faucet,
+.faucet-knob,
+.faucet-spout {
+	position: absolute;
+	right: 0;
+}
+
+.faucet {
+	top: 20px;
+	opacity: 0;
+}
+
+.faucet-object {
+	position: absolute;
+	z-index: -1;
+	// opacity: 0.5;
+	// background-color: red;
+}
+
+.bubbles-ready {
+	.faucet-knob,
+	.faucet-knob-object {
+		cursor: pointer;
+	}
+
+	.faucet-knob {
+		&:hover {
+			top: 18px;
+		}
+	}
+}
+
+.faucet-knob {
+	width: 190px;
+	height: 80px;
+	right: 62px;
+	top: 20px;
+	background-position: -48px 0;
+
+	-webkit-transition-property: -webkit-transform, top;
+	-moz-transition-property: -moz-transform, top;
+	-ms-transition-property: -ms-transform, top;
+	-o-transition-property: -o-transform, top;
+	transition-property: transform, top;
+
+	@include prefix(transition-duration, 400ms);
+
+	&.faucet-open {
+		top: 0;
+
+		@include prefix(transform, rotateY(355deg));
+
+		&:hover {
+			top: 2px;
+		}
+	}
+
+	&.faucet-transition {
+		@include prefix(transition-duration, 1250ms);
+	}
+
+	.faucet-object {
+		&:nth-child(1) {
+			width: 90%;
+			height: 20px;
+			left: 4%;
+			top: 10px;
+		}
+
+		&:nth-child(2) {
+			width: 16%;
+			height: 94%;
+			left: 42%;
+			bottom: 0;
+		}
+	}
+}
+
+.faucet-spout {
+	width: 300px;
+	height: 220px;
+	top: 80px;
+	background-position: 0 100%;
+
+	.faucet-object {
+		&:nth-child(1) {
+			width: 66%;
+			height: 36%;
+			right: 0;
+			top: 40%;
+		}
+
+		&:nth-child(2) {
+			width: 26%;
+			height: 18%;
+			left: 36%;
+			bottom: 60%;
+		}
+
+		&:nth-child(3) {
+			width: 32%;
+			height: 10%;
+			left: 32%;
+			top: 8%;
+		}
+
+		&:nth-child(4) {
+			width: 8%;
+			height: 6%;
+			right: 66%;
+			bottom: 48%;
+		}
+
+		&:nth-child(5) {
+			width: 31%;
+			height: 8%;
+			right: 66%;
+			bottom: 26%;
+		}
+
+		&:nth-child(6) {
+			width: 28%;
+			height: 8%;
+			right: 66%;
+			bottom: 34%;
+		}
+
+		&:nth-child(7) {
+			width: 22%;
+			height: 6%;
+			right: 66%;
+			bottom: 42%;
+		}
+
+		&:nth-child(8) {
+			width: 1px;
+			height: 24%;
+			left: 1%;
+			bottom: 2%;
+		}
+
+		&:nth-child(9) {
+			width: 1px;
+			height: 24%;
+			left: 18%;
+			bottom: 2%;
+		}
+	}
+}
+
+.faucet-ready {
+
+	opacity: 1;
+
+	@include prefix(animation, fade-in 2000ms ease-in-out);
+
+	.faucet-knob,
+	.faucet-spout {
+		background-image: url(../images/faucet.png);
+		background-repeat: no-repeat;
+	}
+}
+
+.circle {
+	position: absolute;
+	display: inline-block;
+	top: 310px;
+	z-index: -1;
+	background-image: url(../images/circle_500.png);
+	background-position: center;
+	border-radius: 50%;
+
+	cursor: pointer;
+	cursor: hand;
+	cursor: -moz-grab;
+	cursor: -webkit-grab;
+	cursor: grab;
+
+	@include visually-hidden-text;
+
+	@include prefix(transition, background-color 200ms ease-in-out);
+
+	@include prefix(animation, slide-in-top 500ms ease-in-out);
+
+	&.bodysnatcher {
+		@include prefix(animation, none);
+	}
+}
+
+/* dev */
+
+
+
+/* /dev */
+
+/* /general page styles */

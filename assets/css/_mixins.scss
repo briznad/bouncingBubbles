@@ -1,0 +1,50 @@
+/* mixins */
+
+// browser prefixer
+@mixin prefix($rule, $val) {
+	@each $browser in -webkit-, -moz-, -ms-, -o-, "" {
+		#{$browser}#{$rule}: $val;
+	}
+}
+
+// visually hide elements for screen readers
+@mixin visually-hidden {
+	position: absolute !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+
+// visually hide text within elements for screen readers
+@mixin visually-hidden-text {
+	text-indent: -5000px;
+}
+
+// browser prefixer for animation keyframes
+@mixin keyframe($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+
+	@-o-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+/* /mixins */
